@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Fisky</title>
+<meta name="description" content="Fisky — minimalistyczne fiszki. Twoje zestawy, Twoja nauka." />
+<meta name="theme-color" content="#F9F9FF" />
+<meta name="color-scheme" content="light dark" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Fisky" />
+
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="app-bar">
+    <h1 class="app-title">Fisky</h1>
+    <button class="icon-btn" id="settingsBtn" type="button" data-icon="settings"></button>
+  </header>
+
+  <nav class="nav-rail" aria-label="Nawigacja">
+    <button class="nav-item" type="button" data-view="browse">
+      <span class="nav-indicator"><span data-icon="cards"></span></span>
+      <span class="nav-label" data-i18n="tabBrowse"></span>
+    </button>
+    <button class="nav-item" type="button" data-view="sets">
+      <span class="nav-indicator"><span data-icon="grid"></span></span>
+      <span class="nav-label" data-i18n="tabSets"></span>
+    </button>
+  </nav>
+
+  <main class="content" id="content">
+    <section id="view-browse" class="view active" aria-live="polite">
+      <div id="browseContent"></div>
+    </section>
+    <section id="view-sets" class="view">
+      <div id="setsContent"></div>
+    </section>
+  </main>
+
+  <nav class="nav-bar" aria-label="Nawigacja">
+    <button class="nav-item" type="button" data-view="browse">
+      <span class="nav-indicator"><span data-icon="cards"></span></span>
+      <span class="nav-label" data-i18n="tabBrowse"></span>
+    </button>
+    <button class="nav-item" type="button" data-view="sets">
+      <span class="nav-indicator"><span data-icon="grid"></span></span>
+      <span class="nav-label" data-i18n="tabSets"></span>
+    </button>
+  </nav>
+
+  <button class="fab" id="fabNewSet" type="button" data-icon="plus" data-i18n-aria="newSet"></button>
+</div>
+
+<!-- Editor dialog -->
+<dialog id="editorDialog" class="dialog" aria-labelledby="editorTitle">
+  <div class="dialog-bar">
+    <button class="icon-btn" type="button" id="editorCloseBtn" data-icon="close" data-i18n-aria="close"></button>
+    <h2 class="dialog-bar-title" id="editorTitle"></h2>
+    <button class="btn btn--text" type="button" id="editorSaveBtn"></button>
+  </div>
+  <div class="dialog-body">
+    <label class="field-label" id="editorNameLabel" for="editorName"></label>
+    <input class="field" id="editorName" type="text" autocomplete="off" enterkeyhint="done" />
+    <div class="cards-head">
+      <span class="field-label" id="editorCardsLabel"></span>
+      <button class="btn btn--text" type="button" id="addCardBtn">
+        <span data-icon="plus" data-icon-size="18"></span>
+        <span id="addCardLabel"></span>
+      </button>
+    </div>
+    <div id="editorCards" class="card-rows"></div>
+  </div>
+</dialog>
+
+<!-- Confirm dialog (delete set) -->
+<dialog id="confirmDialog" class="dialog dialog--small" aria-labelledby="confirmTitle">
+  <div class="dialog-body" style="padding-top:24px">
+    <h2 class="empty-title" id="confirmTitle"></h2>
+    <p class="dialog-text" id="confirmDesc"></p>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn btn--text" type="button" id="confirmCancel"></button>
+    <button class="btn btn--danger" type="button" id="confirmOk"></button>
+  </div>
+</dialog>
+
+<!-- Import confirm dialog (merge / replace) -->
+<dialog id="importConfirmDialog" class="dialog dialog--small" aria-labelledby="importTitle">
+  <div class="dialog-body" style="padding-top:24px">
+    <h2 class="empty-title" id="importTitle"></h2>
+    <p class="dialog-text" id="importDesc"></p>
+  </div>
+  <div class="dialog-actions dialog-actions--wrap">
+    <button class="btn btn--text" type="button" id="importCancel"></button>
+    <button class="btn btn--tonal" type="button" id="importMerge"></button>
+    <button class="btn btn--danger" type="button" id="importReplace"></button>
+  </div>
+</dialog>
+
+<!-- Share dialog -->
+<dialog id="shareDialog" class="dialog dialog--small" aria-labelledby="shareTitle">
+  <div class="dialog-bar">
+    <button class="icon-btn" type="button" id="shareCloseBtn" data-icon="close" data-i18n-aria="close"></button>
+    <h2 class="dialog-bar-title" id="shareTitle"></h2>
+  </div>
+  <div class="dialog-body">
+    <p class="dialog-text" id="shareDesc"></p>
+    <label class="switch">
+      <input type="checkbox" id="shareIncludeMarks" checked>
+      <span class="switch-track"><span class="switch-thumb"></span></span>
+      <span class="switch-text" id="shareIncludeMarksLabel"></span>
+    </label>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn btn--text" type="button" id="shareCancel"></button>
+    <button class="btn btn--filled" type="button" id="shareDownload"></button>
+  </div>
+</dialog>
+
+<!-- Settings dialog -->
+<dialog id="settingsDialog" class="dialog dialog--small" aria-labelledby="settingsTitle">
+  <div class="dialog-bar">
+    <button class="icon-btn" type="button" id="settingsCloseBtn" data-icon="close" data-i18n-aria="close"></button>
+    <h2 class="dialog-bar-title" id="settingsTitle" data-i18n="settings"></h2>
+  </div>
+  <div class="dialog-body" style="padding-bottom:28px">
+    <div class="setting-group">
+      <span class="setting-label" data-i18n="language"></span>
+      <div class="segmented" id="langSegmented">
+        <button type="button" data-lang="pl">Polski</button>
+        <button type="button" data-lang="en">English</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" data-i18n="theme"></span>
+      <div class="segmented" id="themeSegmented">
+        <button type="button" data-theme-opt="system" data-i18n="themeSystem"></button>
+        <button type="button" data-theme-opt="light" data-i18n="themeLight"></button>
+        <button type="button" data-theme-opt="dark" data-i18n="themeDark"></button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <span class="setting-label" data-i18n="dataSection"></span>
+      <div class="data-actions">
+        <button class="btn btn--tonal btn--block" type="button" id="exportBackupBtn">
+          <span data-icon="download" data-icon-size="20"></span>
+          <span data-i18n="exportBackup"></span>
+        </button>
+        <button class="btn btn--tonal btn--block" type="button" id="importBackupBtn">
+          <span data-icon="upload" data-icon-size="20"></span>
+          <span data-i18n="importBackup"></span>
+        </button>
+        <button class="btn btn--tonal btn--block" type="button" id="importSetBtn">
+          <span data-icon="filePlus" data-icon-size="20"></span>
+          <span data-i18n="importSet"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<input type="file" id="backupFileInput" accept="application/json,.json" hidden>
+<input type="file" id="setFileInput" accept="application/json,.json" hidden>
+
+<script src="app.js" defer></script>
+</body>
+</html>

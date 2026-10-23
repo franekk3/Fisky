@@ -1,0 +1,27 @@
+{
+  "name": "Fisky",
+  "short_name": "Fisky",
+  "description": "Minimalist flashcards right in your browser — your sets, your learning.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F9F9FF",
+  "theme_color": "#415F91",
+  "lang": "pl",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
