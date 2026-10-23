@@ -160,6 +160,7 @@ h1, h2, h3, p { margin: 0; }
 .view.active { display: block; }
 
 .nav-bar {
+  user-select: none;
   grid-area: nav;
   display: flex; align-items: stretch;
   height: calc(80px + env(safe-area-inset-bottom, 0px));
@@ -388,8 +389,8 @@ h1, h2, h3, p { margin: 0; }
 }
 .set-card-body { flex: 1; min-width: 0; }
 .set-card-title {
-  font-size: 16px; font-weight: 500;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 14px; font-weight: 500;
+  overflow-x: auto; white-space: nowrap;
 }
 .set-card-sub { font-size: 13px; margin-top: 2px; color: var(--on-surface-variant); }
 .set-card.active .set-card-sub { color: color-mix(in srgb, var(--on-secondary-container) 72%, transparent); }
