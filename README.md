@@ -1,5 +1,4 @@
-  <img src="https://raw.githubusercontent.com/franekk3/Fisky/be669fa316bd59369e62c3d2fc0d69ac06f31b24/icons/icon.svg" height="55px" width="55px" style="vertical-align: middle;">
-  <span style="font-size: 2em; font-weight: bold; vertical-align: middle; margin-left: 10px;">Fisky</span>
+  # <img src="https://raw.githubusercontent.com/franekk3/Fisky/be669fa316bd59369e62c3d2fc0d69ac06f31b24/icons/icon.svg" height="60px" width="60px" style="vertical-align: middle;">Fisky
   
 > Minimalist flashcards right in your browser — your sets, your learning.
 > Built in the spirit of Material 3, fully offline, as a PWA.
@@ -7,6 +6,10 @@
 [![License: GPL v3+](https://img.shields.io/badge/License-GPLv3%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![PWA](https://img.shields.io/badge/PWA-ready-5A0FC8.svg)](#-pwa--offline)
 [![Made with Vanilla JS](https://img.shields.io/badge/Vanilla-JS-yellow.svg)](https://developer.mozilla.org/docs/Web/JavaScript)
+
+---
+## Try Fisky:
+[![License: GPL v3+](https://img.shields.io/badge/Fisky-GitHub%20Pages-blue?style=for-the-badge)](https://franekk3.github.io/Fisky)
 
 ---
 
@@ -28,7 +31,16 @@
 
 ## 📸 Screenshots
 
-> Add your own screenshots here (e.g. `docs/screenshot-browse.png`, `docs/screenshot-sets.png`).
+
+| <img src="https://github.com/franekk3/Fisky/blob/main/media/screenshots/mobile1.png?raw=true" > | <img src="https://github.com/franekk3/Fisky/blob/main/media/screenshots/mobile2.png?raw=true" > | <img src="https://github.com/franekk3/Fisky/blob/main/media/screenshots/desktop1.png?raw=true" > | <img src="https://github.com/franekk3/Fisky/blob/main/media/screenshots/desktop2.png?raw=true" > | <img src="https://github.com/franekk3/Fisky/blob/main/media/screenshots/desktop3.png?raw=true" > |
+| --------- | --------- | --------- | --------- | --------- |
+
+
+
+
+
+
+
 
 ---
 
@@ -90,6 +102,8 @@ const CACHE = 'fisky-v2'; // ← change on every significant update
 ├── icons/
 │   ├── icon.svg            # app icon
 │   └── icon-maskable.svg   # maskable icon (Android)
+├── media/
+│   └── screenshots            # screenshots
 ├── README.md
 └── LICENSE                 # full GNU GPL v3 text
 ```
