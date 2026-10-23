@@ -582,3 +582,13 @@ h1, h2, h3, p { margin: 0; }
     transition-duration: .01ms !important;
   }
 }
+.app-title {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-self: center;
+  img {
+    height: 45px;
+    width: 45px;;
+  }
+}

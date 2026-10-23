@@ -1,4 +1,4 @@
-const CACHE = 'fisky-v1.0';
+const CACHE = 'fisky-v1.1';
 
 const ASSETS = [
   './', './index.html', './styles.css', './app.js',
